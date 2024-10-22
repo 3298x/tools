@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Nexus Tools </title>
+    <title>Nexus Tools</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,12 +22,12 @@
             flex-direction: column;
             border-radius: 10px;
             position: relative;
+            align-items: center;
         }
 
-        .navbar h1 {
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            text-align: center;
+        .navbar img {
+            width: 80%;
+            margin-bottom: 5px;
         }
 
         .button {
@@ -40,6 +40,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
             text-align: left;
+            width: 100%;
         }
 
         .button:hover {
@@ -209,6 +210,7 @@
             text-align: center;
             text-decoration: none;
             transition: background-color 0.3s;
+            width: 100%; 
         }
 
         .discord-btn:hover {
@@ -218,6 +220,7 @@
 </head>
 <body>
     <div class="navbar">
+        <img src="logo.gif" alt="Logo"> 
         <button class="button" onclick="showPage('home')"> Home </button>
         <button class="button" onclick="showPage('products')"> Products </button>
         <a href="https://discord.gg/WqJ2jdBYnr" class="discord-btn" target="_blank"> Join the Discord! </a>
