@@ -1,1 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Made By Bat -->
+<!-- @3298x -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nexus Tools </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
 
+        .navbar {
+            width: 200px;
+            background-color: black; 
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .navbar h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .button {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: left;
+        }
+
+        .button:hover {
+            background-color: #444;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            position: relative;
+            background-color: black;
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: rgba(34, 34, 34, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            width: calc(33.33% - 20px);
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            position: relative;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .product h3 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            margin: 0;
+        }
+
+        .purchase-btn {
+            background-color: black;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            z-index: 2;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .purchase-btn:hover {
+            background-color: #444;
+        }
+
+        .updates {
+            margin-top: 20px;
+        }
+
+        .update-box {
+            background-color: rgba(34, 34, 34, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 5;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            width: 80%;
+            max-width: 600px;
+            height: 70%;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .popup-header {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .popup-header h3 {
+            margin: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            background: none;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin: 10px 0;
+        }
+
+        .feature {
+            margin: 10px 0;
+            cursor: pointer;
+            color: #ccc;
+            background-color: #333;
+            border-radius: 8px;
+            padding: 10px;
+            transition: background-color 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .feature:hover {
+            background-color: #444;
+        }
+
+        .feature-content {
+            display: none;
+            margin-top: 5px;
+            padding-left: 10px;
+            border-radius: 5px;
+            background-color: #222;
+            padding: 10px;
+        }
+
+        .discord-btn {
+            margin-top: auto;
+            margin-bottom: 10px;
+            background-color: #7289da;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .discord-btn:hover {
+            background-color: #5b6eae;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="button" onclick="showPage('home')"> Home </button>
+        <button class="button" onclick="showPage('products')"> Products </button>
+        <a href="https://discord.gg/WqJ2jdBYnr" class="discord-btn" target="_blank"> Join the Discord! </a>
+    </div>
+    <div class="content">
+        <div id="home" class="page">
+            <h2> Our Products </h2>
+            <p> Go to the products page for features. </p>
+            <div class="product-container">
+                <div class="product">
+                    <img src="sot.jpeg" alt="Sea of Thieves Image">
+                    <h3> Sea of Thieves </h3>
+                    <a href="https://discord.gg/WqJ2jdBYnr" class="purchase-btn" target="_blank"> Purchase <b>[$25]</b> </a>
+                </div>
+                <div class="product">
+                    <img src="otg.jpg" alt="Tool 2 Image">
+                    <h3> Off The Grid </h3>
+                    <a href="https://discord.gg/WqJ2jdBYnr" class="purchase-btn" target="_blank"> Purchase <b>[free]</b></a>
+                </div>
+                <div class="product">
+                    <img src="tool3.jpg" alt="Tool 3 Image">
+                    <h3> Coming Soon.. </h3>
+                    <a href="https://discord.gg/WqJ2jdBYnr" class="purchase-btn" target="_blank"> unavailable </a>
+                </div>
+            </div>
+            <div class="updates">
+                <h2> Updates </h2>
+                <div class="update-box">
+                    <strong> 10/22/24 </strong><br>
+                    Website Release
+                </div>
+                <div class="update-box">
+                    <strong> 10/17/24 </strong><br>
+                    Test
+                </div>
+            </div>
+        </div>
+        <div id="products" class="page" style="display: none;">
+            <h2> Our Products </h2>
+            <div class="product-container">
+                <div class="product" onclick="showPopup('Sea of Thieves', '', ['FOV: <b><br> - 120 fov <br> - No Zoom </b>', 'Aim: <b><br> - Sword Aimbot</b>', 'Visuals: <b><br> - No Fog <br> - Removals <br> - Always Day </b>', 'Skin Changer: <b><br> - Weapon Skins (request in discord server) <br> - Curse Skins</b>', 'Misc: <b><br> - Infinite Captain Supplies <br> - Quick Grab</b>'])">
+                    <img src="sot.jpeg" alt="sot img">
+                    <h3> Sea of Thieves </h3>
+                    <a href="https://discord.gg/WqJ2jdBYnr" class="purchase-btn" target="_blank"> Purchase </a>
+                </div>
+                <div class="product" onclick="showPopup('Tool 2', '', ['Aim: <b><br> - Aimbot <br> - Bones <br> - Aim Fov <br> - Fov Slider <br> - Visibility Check <br> - Smoothness <br> - Aim Lines </b>', 'Visuals: <b><br> - ESP (visible and not visible) <br> - Snaplines <br> - Distance <br> - Health <br> - Armor <br> - Color Customization <br> - Bar Size Slider </b>', 'Exploits: <b><br> - Bullet Multiplier <br> - Rapid Fire <br> - Infinite Ammo <br> - Full Auto <br> - Fast Bullets <br> </b>'])">
+                    <img src="otg.jpg" alt="otg img">
+                    <h3> Off The Grid </h3>
+                    <a href="https://discord.gg/WqJ2jdBYnr" class="purchase-btn" target="_blank"> Purchase </a>
+                </div>
+                <div class="product" onclick="showPopup('Tool 3', '', ['Aim: Example', 'Visuals: Example', 'Misc: Example'])">
+                    <img src="tool3.jpg" alt="Tool 3 img">
+                    <h3> Coming Soon.. </h3>
+                    <a href="https://discord.gg/WqJ2jdBYnr" class="purchase-btn" target="_blank"> unavailable </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <div class="popup-header">
+            <h3 id="popup-title"></h3>
+            <button class="close-btn" onclick="closePopup()">X</button>
+        </div>
+        <div id="popup-content"></div>
+    </div>
+
+    <script>
+        function showPage(page) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => {
+                p.style.display = 'none';
+            });
+            document.getElementById(page).style.display = 'block';
+        }
+
+        function showPopup(title, image, features) {
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-content').innerHTML = features.map((feature, index) => `
+                <div class="feature" onclick="toggleFeatureContent(${index})">
+                    ${feature.split(':')[0]} <span>⬇</span>
+                    <div class="feature-content" id="feature-content-${index}">${feature}</div>
+                </div>
+            `).join('');
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function toggleFeatureContent(index) {
+            const content = document.getElementById(`feature-content-${index}`);
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
